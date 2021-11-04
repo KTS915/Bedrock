@@ -1,0 +1,806 @@
+/*!
+Theme Name: Bedrock
+Theme URI: https://timkaye.org
+Author: Tim Kaye
+Author URI: https://timkaye.org
+Description: A starter theme for ClassicPress based on Susty by Jack Lenox
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: LICENSE
+Text Domain: bedrock
+
+This theme, like ClassicPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+
+Susty was itself based on Underscores https://underscores.me/, (C) 2012-2017 Automattic, Inc. Underscores is distributed under the terms of the GNU GPL v2 or later.
+
+*/
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+# CSS Custom Variables
+# Dark Mode
+# Typography
+# Elements
+# Forms
+# Links
+# Accessibility
+# Alignments
+# Clearings
+# Content
+	## Posts and pages
+	## Comments
+# Media
+	## Captions
+	## Galleries
+# Site
+	## Header
+	## Content
+	## Footer
+	## CSS for larger tablets upwards
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+ * 
+ * CSS Custom Variables
+ * 
+ * These enable consistent changes to be made throughout the theme just
+ * by changing the value of the custom property here.
+ * 
+ *------------------------------------------------------------*/ 
+:root {
+	--main-bg-color: #fffefc;
+	--classic-bg-color: linear-gradient(-135deg, #3ebca6 18%, #057f99 50%, #006b81 100%);
+	--hover-bg-color: #555;
+	--font: "Liberation Sans", "Nimbus Sans L", "Roboto", "Lato", sans-serif;
+	--pre-font: "Courier 10 Pitch", Courier, monospace;
+	--code-font: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+	--font-color: #444;
+	--font-alt-color: white;
+	--sidebar-bg-color: #d9f2ee;
+	--link-color: blue;
+	--nav-link-color: #444;
+	--focus-outline: 2px dotted #555;
+}
+
+/*--------------------------------------------------------------
+ * 
+ * Dark Mode
+ * 
+ * Using custom variables also makes it possible to set a scheme for
+ * dark mode for those users who have set their devices to use dark mode
+ * 
+ *------------------------------------------------------------*/
+@media (prefers-color-scheme: dark) {
+	:root {
+		--main-bg-color: black;
+		--sidebar-bg-color: black;
+		--font-color: #f3f3f3;
+		--link-color: yellow;
+		--focus-outline: 2px dotted white;
+	}
+}
+
+/*--------------------------------------------------------------
+# Typography
+--------------------------------------------------------------*/
+body,
+button,
+input,
+select,
+optgroup,
+textarea {
+	color: var(--font-color);
+	font-family: var(--font);
+	font-size: calc( 15px + 4 * (100vw / 1500));
+	line-height: 1.5;
+}
+h1, h2, h3, h4, h5, h6 {
+	clear: both;
+}
+h1 {
+	font-size: 2em;
+	margin: 0.67em 0;
+}
+h2 {
+	font-size: 1.75em;
+	margin: 0.67em 0 0.5em;
+}
+h3 {
+	font-size: 1.5em;
+	margin: 0.67em 0 0.2em;
+}
+h4 {
+	font-size: 1.25em;
+	margin: 0.67em 0 0;
+}
+h5 {
+	font-size: 1.1em;
+	margin: 0.67em 0 0;
+}
+h6 {
+	font-size: 1em;
+	margin: 0.67em 0 0;
+}
+p {
+	margin-bottom: 1.5em;
+}
+dfn, cite, em, i {
+	font-style: italic;
+}
+blockquote {
+	margin: 0 1.5em;
+}
+address {
+	margin: 0 0 1.5em;
+}
+pre {
+	background: #eee;
+	font-family: var(--pre-font);
+	font-size: 15px;
+	font-size: 0.9375rem;
+	line-height: 1.6;
+	margin-bottom: 1.6em;
+	max-width: 100%;
+	overflow: auto;
+	padding: 1.6em;
+}
+code, kbd, tt, var {
+	font-family: var(--code-font);
+	font-size: 15px;
+	font-size: 0.9375rem;
+}
+abbr, acronym {
+	border-bottom: 1px dotted #666;
+	cursor: help;
+}
+mark, ins {
+	background: #fff9c0;
+	text-decoration: none;
+}
+big {
+	font-size: 125%;
+}
+
+/* ClassicPress Icons */
+@font-face {
+font-family: "cpicons";
+src: url("fonts/cpicons.woff") format("woff");
+	font-weight: normal;
+	font-style: normal;
+	font-display: block;
+}
+.cpicon-discourse::before {
+	content: "\e900";
+}
+.cpicon-slack::before {
+	content: "\e904";
+}
+.cpicon-github::before {
+	content: "\e903";
+}
+.cpicon-twitter::before {
+	content: "\e905";
+}
+/*--------------------------------------------------------------
+# Elements
+--------------------------------------------------------------*/
+body {
+	background-color: var(--main-bg-color);
+}
+hr {
+	background-color: #ccc;
+	border: 0;
+	height: 1px;
+}
+ol {
+	list-style: decimal;
+}
+.content ul {
+	list-style: disc;
+}
+.content ol li,
+.content ul li {
+	margin-left: 2em;
+}
+li > ul,
+li > ol {
+	margin-bottom: 0;
+}
+dt {
+	font-weight: bold;
+}
+dd {
+	margin: 0 1.5em 1.5em;
+}
+img {
+	height: auto;
+}
+figure {
+	margin: 1em 0;
+}
+table {
+	margin: 0 0 1.5em;
+	width: 100%;
+}
+
+/*--------------------------------------------------------------
+# Forms
+--------------------------------------------------------------*/
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+	border: 1px solid var(--hover-bg-color);
+	border-radius: 3px;
+	background: #006b81;
+	color: var(--font-alt-color);
+	font-size: 16px;
+	line-height: 1;
+	margin: 1em 0;
+	padding: 0.55em 1em 0.5em;
+	cursor: default;
+}
+button:hover,
+input[type="button"]:hover,
+input[type="reset"]:hover,
+input[type="submit"]:hover {
+	background: #3ebca6;
+}
+button:active,
+button:focus,
+input[type="button"]:active,
+input[type="button"]:focus,
+input[type="reset"]:active,
+input[type="reset"]:focus,
+input[type="submit"]:active,
+input[type="submit"]:focus {
+	border: 1px solid var(--hover-bg-color);
+}
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+input[type="number"],
+input[type="tel"],
+input[type="range"],
+input[type="date"],
+input[type="month"],
+input[type="week"],
+input[type="time"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="color"],
+textarea {
+	color: #666;
+	border: 1px solid var(--hover-bg-color);
+	border-radius: 3px;
+	padding: 3px;
+}
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus,
+input[type="number"]:focus,
+input[type="tel"]:focus,
+input[type="range"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="week"]:focus,
+input[type="time"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="color"]:focus,
+textarea:focus {
+	color: #111;
+}
+select {
+	border: 1px solid var(--hover-bg-color);
+}
+textarea {
+	width: 100%;
+}
+
+/*--------------------------------------------------------------
+# Links
+--------------------------------------------------------------*/
+a {
+	color: var(--link-color);
+	text-decoration: underline;
+	cursor: pointer;
+}
+a:hover {
+	text-decoration: none;
+}	
+
+/*--------------------------------------------------------------
+ * 
+ * If you want to scroll to links on the same page instead of jumping to
+ * them, uncomment the media query below. This will enable smooth
+ * scrolling for those users who have not set a preference (often for
+ * accessibility reasons) for jumping to links.
+ * 
+ *------------------------------------------------------------*/ 
+/*
+@media (prefers-reduced-motion: no-preference) {
+	html {
+		scroll-behavior: smooth;
+	}
+}
+*/
+
+/*--------------------------------------------------------------
+# Accessibility
+--------------------------------------------------------------*/
+/* Text meant only for screen readers. */
+.screen-reader-text {
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute !important;
+	width: 1px;
+	word-wrap: normal !important; /* Many screen reader and browser combinations announce broken words as they would appear visually. */
+}
+.screen-reader-text:focus {
+	background-color: #f1f1f1;
+	border-radius: 3px;
+	box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+	clip: auto !important;
+	clip-path: none;			
+	display: block;
+	font-size: 14px;
+	font-size: 0.875rem;
+	font-weight: bold;
+	height: auto;
+	left: 5px;
+	line-height: normal;
+	padding: 15px 23px 14px;
+	text-decoration: none;
+	top: 5px;
+	width: auto;
+	z-index: 100000;
+	/* Above WP toolbar. */
+}
+:focus {
+	outline: var(--focus-outline);
+}
+
+/* Do not show the outline on the skip link target. */
+#content[tabindex="-1"]:focus {
+	outline: 0;
+}
+
+/*--------------------------------------------------------------
+# Alignments
+--------------------------------------------------------------*/
+.alignleft {
+	display: block;
+	float: left;
+	margin-right: 1.5em;
+}
+.alignright {
+	display: block;
+	float: right;
+	margin-left: 1.5em;
+}
+.aligncenter {
+	clear: both;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/*--------------------------------------------------------------
+# Clearings
+--------------------------------------------------------------*/
+.clear:before,
+.clear:after {
+	content: "";
+	display: table;
+	table-layout: fixed;
+}
+.clear:after {
+	clear: both;
+}
+
+/*--------------------------------------------------------------
+# Content
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+## Posts and pages
+--------------------------------------------------------------*/
+.sticky {
+	display: block;
+}
+.hentry {
+	margin: 0 0 1.5em;
+}
+.updated:not(.published) {
+	display: none;
+}
+
+/*--------------------------------------------------------------
+## Comments
+--------------------------------------------------------------*/
+.comment-content a {
+	word-wrap: break-word;
+}
+.bypostauthor {
+	display: block;
+}
+
+/*--------------------------------------------------------------
+# Media
+--------------------------------------------------------------*/
+/* Make sure embeds and iframes fit their containers. */
+embed,
+iframe,
+object {
+	max-width: 100%;
+}
+
+/* Make sure logo link wraps around logo image. */
+.custom-logo-link {
+	display: inline-block;
+}
+.custom-logo-link:focus {
+	outline: 2px dotted var(--font-alt-color);
+}
+.logo,
+.custom-logo {
+	width: 1.65em;
+	height: 1.65em;
+	margin: 2em 1em 0 0;
+}
+.custom-logo {
+	margin-top: 0;
+}
+
+/*--------------------------------------------------------------
+## Captions
+--------------------------------------------------------------*/
+.wp-caption {
+	margin-bottom: 1.5em;
+	max-width: 100%;
+}
+.wp-caption img[class*="wp-image-"] {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+.wp-caption .wp-caption-text {
+	margin: 0.8075em 0;
+}
+.wp-caption-text {
+	text-align: center;
+}
+
+/*--------------------------------------------------------------
+## Galleries
+--------------------------------------------------------------*/
+.gallery {
+	margin-bottom: 1.5em;
+}
+.gallery-item {
+	display: inline-block;
+	text-align: center;
+	vertical-align: top;
+	width: 100%;
+}
+.gallery-columns-2 .gallery-item {
+	max-width: 50%;
+}
+.gallery-columns-3 .gallery-item {
+	max-width: 33.33%;
+}
+.gallery-columns-4 .gallery-item {
+	max-width: 25%;
+}
+.gallery-columns-5 .gallery-item {
+	max-width: 20%;
+}
+.gallery-columns-6 .gallery-item {
+	max-width: 16.66%;
+}
+.gallery-columns-7 .gallery-item {
+	max-width: 14.28%;
+}
+.gallery-columns-8 .gallery-item {
+	max-width: 12.5%;
+}
+.gallery-columns-9 .gallery-item {
+	max-width: 11.11%;
+}
+.gallery-caption {
+	display: block;
+}
+
+/*--------------------------------------------------------------
+# Site
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+## Header
+--------------------------------------------------------------*/
+.masthead {
+	margin: 0 auto 2em;
+	padding: 0.2em 1em 0;
+	text-align: center;
+	background: var(--classic-bg-color);
+}
+.masthead-inner {
+	display: flex;
+	justify-content: center;
+	padding-bottom: 1em;
+}
+#masthead h1 a {
+	color: var(--font-alt-color);
+	font-weight: bold;
+	text-decoration: none;
+}
+#masthead h1 a:hover,
+#masthead h1 a:focus {
+	background-color: var(--hover-bg-color);
+}
+#masthead h2 {
+	color: var(--font-alt-color);
+	font-size: 1.3em;
+	margin: -1em 0 1.2em;
+}
+.menu-toggles {
+	text-align: right;
+	position: relative;
+	z-index: 3;
+	margin-top: -4.3em;
+}
+.menu-toggles svg {
+	width: 2.4em;
+	height: 2.4em;
+	margin-bottom: -0.1em;
+}
+.menu-toggle {
+	margin-bottom: 1em;
+	border: 1px solid var(--hover-bg-color);
+	border-radius: 3px;
+	background: #e6e6e6;
+	font-size: 0.75rem;
+	padding: 0.2em 0.33em 0.13em;
+}
+.menu-toggle:hover {
+	background: #fff;
+}
+#menu-primary {
+	text-align: center;
+	margin: 0 auto;
+	padding: 0;
+	position: fixed;
+}
+.main-navigation {
+	margin-left: -1em;
+	margin-right: -1em;
+	display: none;
+}
+svg * {
+	width: 100%;
+	height: 100%;
+}
+nav ul {
+	margin: 0 auto;
+	padding: 0;
+	width: 100%;
+	overflow: hidden;
+	border: 1px solid var(--hover-bg-color);
+}
+nav ul li {
+	border-bottom: 1px solid var(--hover-bg-color);
+}
+nav ul li:last-child {
+	border-bottom: none;
+}
+nav ul li a {
+	color: var(--nav-link-color);
+	padding: 0.5em;
+	display: block;
+	background: #fcf8f3;
+	text-decoration: none;
+}
+nav ul li a:hover,
+nav ul li a:focus {
+	background-color: var(--hover-bg-color);
+	color: var(--font-alt-color);
+}
+[class^="cpicon-"],
+[class*=" cpicon-"] {
+	font-family: 'cpicons';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+}
+.secondary-nav {
+	margin: 0 auto;
+	background: var(--sidebar-bg-color);
+}
+.top-menu {
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+}
+.social-menu {
+	width: 100%;
+	padding: 0 0.7em 0 0.7em;
+}
+.social-menu a {
+	display: inline-block;
+	border: 0;
+	padding: 0.3em 0.6em 0.2em;
+	text-decoration: none;
+}
+.social-menu a:hover {
+	color: var(--font-alt-color);
+	background-color: var(--hover-bg-color);
+}
+.secondary-nav ul {
+	border: none;
+	background: transparent;
+}
+.secondary-nav ul li {
+	border: none;
+	display: inline-block;
+	margin-left: 0.1em;
+}
+.buttons-menu {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+}
+/*--------------------------------------------------------------
+## Content
+--------------------------------------------------------------*/
+.outer-content {
+	margin: -3em auto 0;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+}
+.content {
+	width: 100%;
+	padding: 0 1em;
+}
+.widget-area {
+	order: 2;
+	width: 100%;
+	padding: 0.5em 1em 1em;
+	background: var(--sidebar-bg-color);
+}
+.widget {
+	margin: 1em 0;
+}
+.entry-meta {
+	color: #b3b3b3;
+}
+.cat-links {
+	display: flex;
+	align-items: center;
+}
+.cat-links a,
+.comments-link a,
+.edit-link a {
+	padding: 0 0.5em;
+	margin: 0 0.5em 0 0;
+}
+/*--------------------------------------------------------------
+## Footer
+--------------------------------------------------------------*/
+.colophon {
+	margin: 0 auto 1em;
+	text-align: center;
+}
+.colophon-inner {
+	font-size: 0.75em;
+}
+.footer-links-container {
+	background: var(--classic-bg-color);
+}
+#footer-links {
+	padding: 1em 0;
+	margin-bottom: 1em;
+	display: flex;
+	justify-content: center;
+}
+#footer-links a {
+	padding: 0.5em;
+	text-decoration: none;
+}
+#footer-links li {
+	padding: 0.5em;
+}
+#footer-links a {
+	color: var(--font-alt-color);
+}
+#footer-links a:hover,
+#footer-links a:focus {
+	background-color: var(--hover-bg-color);
+}
+.copyright {
+	margin-bottom: 1em;
+}
+
+/*--------------------------------------------------------------
+## CSS for larger tablets upwards
+--------------------------------------------------------------*/
+@media only screen and (min-width: 768px) {
+	.social-menu {
+		width: 30%;
+		min-width: 110px;
+	}
+	.buttons-menu {
+		text-align: right;
+		width: 60%;
+		min-width: 450px;
+	}
+	.menu-toggles {
+		margin-top: -1em;
+	}
+	.menu-toggle {
+		display: none;
+	}
+	#menu-primary {
+		position: static;
+	}
+	nav ul {
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+	nav ul {
+		background: var(--sidebar-bg-color);
+	}
+	nav ul li {
+		float: left;
+		border-bottom: none;
+		margin: 0 0.5em;
+	}
+	.main-navigation {
+		display: block;
+	}
+	.outer-content {
+		margin: 0 auto;
+	}
+	.masthead {
+		margin: 0 auto;
+	}
+	.no-sidebars .outer-width {
+		max-width: 50em;
+	}
+	.no-sidebars .content {
+		width: 100%;
+	}
+	.one-sidebar .outer-width {
+		max-width: 60em;
+	}
+	.one-sidebar .content {
+		width: 75%;
+	}
+	.two-sidebars .outer-width {
+		max-width: 75em;
+	}
+	.two-sidebars .content {
+		width: 50%;
+	}
+	.widget-area {
+		width: 25%;
+	}
+	#left-sidebar.widget-area {
+		order: -1;
+	}
+	#footer-links a {
+		padding: 1.2em 1.5em;
+	}
+}
