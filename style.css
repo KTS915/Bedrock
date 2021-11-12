@@ -4,7 +4,7 @@ Theme URI: https://timkaye.org
 Author: Tim Kaye
 Author URI: https://timkaye.org
 Description: A starter theme for ClassicPress based on Susty by Jack Lenox
-Version: 1.0.0
+Version: 1.0.1
 License: GNU General Public License v2 or later
 License URI: LICENSE
 Text Domain: bedrock
@@ -122,7 +122,7 @@ h6 {
 	margin: 0.67em 0 0;
 }
 p {
-	margin-bottom: 1.5em;
+	margin: 1em 0;
 }
 dfn, cite, em, i {
 	font-style: italic;
@@ -194,6 +194,7 @@ hr {
 }
 ol {
 	list-style: decimal;
+	margin: 1em 0;
 }
 .content ul {
 	list-style: disc;
