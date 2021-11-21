@@ -119,26 +119,22 @@ if ( ! function_exists( 'bedrock_post_thumbnail' ) ) :
 			return;
 		}
 
-		if ( is_singular() ) :
+		if ( is_singular() ) {
 			?>
 
 			<div class="post-thumbnail">
 				<?php the_post_thumbnail(); ?>
-			</div><!-- .post-thumbnail -->
+			</div>
 
-		<?php else : ?>
+		<?php
+		} else {
+		?>
 
 		<a class="post-thumbnail" href="<?php the_permalink(); ?>" aria-hidden="true">
-			<?php
-			the_post_thumbnail( 'post-thumbnail', array(
-				'alt' => the_title_attribute( array(
-					'echo' => false,
-				) ),
-			) );
-			?>
+			<?php the_post_thumbnail();	?>
 		</a>
 
 		<?php
-		endif; // End is_singular().
+		} // End is_singular().
 	}
 endif;
