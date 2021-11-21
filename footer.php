@@ -38,7 +38,7 @@
 
 				<?php
 				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s', 'bedrock' ), '<a href="https://github.com/timkaye/bedrock">Bedrock</a>', '<a href="https://timkaye.org">Tim&nbsp;Kaye</a>' );
+				printf( esc_html__( 'Theme: %1$s by %2$s', 'bedrock' ), '<a href="https://github.com/KTS915/Bedrock">Bedrock</a>', '<a href="https://timkaye.org">Tim&nbsp;Kaye</a>' );
 				?>
 			</div>
 
