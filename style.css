@@ -216,6 +216,10 @@ dd {
 img {
 	height: auto;
 }
+video {
+	height: 100%;
+	width: 100%;
+}
 figure {
 	margin: 1em 0;
 }
